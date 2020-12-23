@@ -1,0 +1,72 @@
+.white {
+  color: #FFFFFF;
+}
+
+.cinemas {
+  padding-top: 90px;
+  padding-bottom: 50px;
+  position: relative;
+
+  .city-entry {
+    font-size: 15px;
+    position: fixed;
+    left: $margin;
+    top: 18px;
+    z-index: 99;
+  }
+
+  .movietheatre-nav {
+    height: 45px;
+    background-color: $assistBg;
+    top: 50px;
+    z-index: 8;
+
+    &.border::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .search-wrap {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      background-color: $assistBg;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .search-input {
+      border-radius: 5px;
+      background-color: $mainBg;
+      flex-grow: 1;
+      height: 100%;
+      position: relative;
+      text-indent: 1em;
+      font-size: 15px;
+    }
+
+  }
+
+  .cinema-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 14px;
+    color: $inActiveColor;
+    z-index: -1;
+
+    img {
+      width: 100px;
+      margin-bottom: $margin;
+    }
+  }
+}

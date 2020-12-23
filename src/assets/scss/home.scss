@@ -1,0 +1,115 @@
+.home {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 95px;
+  min-height: fit-content;
+  padding-bottom: 60px;
+
+
+  /******************************* 首页导航栏start ****************************/
+
+  .home-nav {
+    height: 45px;
+    background-color: $mainBg;
+    top: 50px;
+    z-index: 8;
+
+    .city-entry {
+      color: $defaultColor;
+    }
+
+    .nav-icon {
+      color: $mainColor;
+      font-size: 24px !important;
+    }
+
+    .movie-nav {
+      height: 44px;
+      line-height: 44px;
+      font-size: 15px;
+      color: $inActiveColor;
+      position: relative;
+      display: flex;
+      position: relative;
+      justify-content: space-around;
+      // padding: 0 $margin * 2.5;
+      user-select: none;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        width: 20px;
+        width: 5.33333vw;
+        border-radius: 1px;
+        height: 3px;
+        background-color: $mainColor;
+        transition: left .2s;
+      }
+
+      &[data-active="0"]:after {
+        left: 15px;
+        left: 4vw;
+      }
+
+      &[data-active="1"]:after {
+        left: 65px;
+        left: 17.333333vw;
+      }
+
+      &[data-active="2"]:after {
+        left: 130px;
+        left: 36vw;
+      }
+
+      .movie-nav-item {
+        width: 80px;
+        width: 10.66667vw;
+        text-align: center;
+        margin: 0 5px;
+        margin: 0 1.33333vw;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:last-of-type {
+          width: 80px;
+          width: 21.33333vw;
+        }
+
+        &.active {
+          font-size: 17px;
+          color: $defaultColor;
+
+        }
+      }
+
+    }
+  }
+
+  .home-nav.border::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /******************************* 首页导航栏end ******************************/
+
+  /***************************** 首页内容区start ******************************/
+
+  .block {
+    background-color: $assistBg;
+
+    .home-movie-list {
+      background-color: $mainBg;
+    }
+
+    .movie:last-of-type .border::after {
+      height: 0;
+    }
+  }
+
+  /****************************** 首页内容区end *******************************/
+
+}

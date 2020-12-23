@@ -1,0 +1,124 @@
+.order {
+  background-color: $assistBg;
+  height: 100%;
+
+  .order-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 14px;
+    color: $inActiveColor;
+    z-index: 9;
+
+    img {
+      width: 100px;
+      margin-bottom: $margin;
+    }
+  }
+
+  .order-content {
+    padding-top: $margin * 5;
+    background-color: $assistBg;
+  }
+
+  .order-list {
+    background-color: $assistBg;
+
+    .order-item {
+      background-color: $mainBg;
+      margin-bottom: $margin;
+
+      .order-title {
+        display: flex;
+        padding: 0 $assistMargin;
+
+        .cinema-name {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          text-align: left;
+          line-height: 38px;
+          height: 38px;
+          font-size: 13px;
+          color: $inActiveColor;
+          margin-right: 6px;
+
+          i {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .order-info {
+        margin: $margin $assistMargin;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+
+        img {
+          flex: 0 0 auto;
+          width: 57px;
+          height: 80px;
+        }
+
+        .order-desc {
+          flex: 1 1 auto;
+          margin-left: $margin;
+          margin-top: 4px;
+          overflow: hidden;
+
+          .movie-name {
+            font-size: 15px;
+            color: $defaultColor;
+            height: 21px;
+            display: flex;
+            align-items: center;
+
+            span:last-of-type {
+              margin-left: 5px;
+            }
+          }
+
+          .showTime {
+            margin-top: 5px;
+          }
+
+          .position,
+          .showTime {
+            font-size: 12px;
+            color: $inActiveColor;
+            line-height: 18px;
+            height: 18px;
+          }
+        }
+      }
+
+      .order-more {
+        margin-left: $assistMargin;
+        padding: 0 $assistMargin 0 0;
+
+        .price,
+        .status {
+          line-height: 42px;
+          height: 42px;
+          font-size: 13px;
+          color: $inActiveColor;
+          display: inline-block;
+        }
+
+        .status {
+          color: $defaultColor;
+          float: right;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+ .profile {
+   height: 100%;
+   background-color: $assistBg;
+
+   .profile-header {
+     height: 25vh;
+     overflow: hidden;
+     text-align: center;
+     background-color: $mainColor;
+
+     .head-icon {
+       display: inline-block;
+       margin-top: 12vh;
+       width: 60px;
+       height: 60px;
+       border-radius: 60px;
+       border: 3px solid $activeColor;
+     }
+   }
+
+   .container {
+     height: 30vh;
+     margin-top: 10px;
+     background: $mainBg;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0 $assistMargin;
+     position: relative;
+     overflow: hidden;
+     text-align: center;
+   }
+
+   .container-item {
+     width: 50%;
+     height: 97px;
+     font-size: 15px;
+     text-align: center;
+     margin-top: 18px;
+     display: flex;
+     position: relative;
+     background-color: $mainBg;
+     background-image:
+       url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/store.png');
+     background-repeat: no-repeat;
+     background-position: top;
+     background-size: 42px auto;
+
+     &:last-of-type {
+       margin-right: 0;
+       background-image:
+         url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/movie.png');
+     }
+   }
+
+   .container-item span {
+     position: absolute;
+     top: 53px;
+     left: 0;
+     right: 0;
+     text-align: center;
+     font-size: 15px;
+     line-height: 21px;
+     height: 21px;
+     margin: auto;
+   }
+ }

@@ -1,0 +1,254 @@
+body {
+  color: $defaultColor;
+}
+
+html,
+body,
+#app,
+.login,
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+// 弹性盒子
+
+.box-flex {
+  display: flex;
+}
+
+.flex {
+  flex: 1;
+}
+
+.discount-label {
+  display: inline-flex;
+}
+
+.discount-label-text {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 13px;
+}
+
+.box-flex:not(.column).middle,
+.inline-flex:not(.column).middle {
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+// 字体激活颜色
+
+.activeColor {
+  color: $activeColor;
+}
+
+// 清除浮动
+
+.clearfix {
+  clear: both;
+  zoom: 1;
+}
+
+.clearfix:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+// 过渡
+
+.animate {
+  transition: all .3s;
+}
+
+// 0.5px的线
+
+.border::after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  width: 200%;
+  height: 1px;
+  background-color: $borderColor;
+  transform-origin: 0 0;
+  transform: scale(0.5, 0.5);
+}
+
+.mb-line-b {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEUAAADh4eGdLxMbAAAAAXRSTlMAQObYZgAAAAxJREFUCNdjYGA4AAAAxADBPcXUKgAAAABJRU5ErkJggg==) 0 bottom repeat-x;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 3) {
+
+  .mb-line-all,
+  .mb-line-b,
+  .mb-line-l,
+  .mb-line-lr,
+  .mb-line-r,
+  .mb-line-t,
+  .mb-line-tb,
+  .mb-outline-b,
+  .mb-outline-t,
+  .mb-outline-tb {
+    background-size: 1px 1px;
+  }
+}
+
+// 固定定位
+.toFixed {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+}
+
+// 选择城市
+
+.city-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  color: $inActiveColor;
+}
+
+.city-name {
+  max-width: 16.2vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.city-entry-arrow {
+  font-size: 12px;
+  transform: scale(.9);
+  margin-top: 3px;
+}
+
+// 文字超出隐藏
+
+.line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 标题
+
+.title {
+  height: 23px;
+  line-height: 23px;
+  font-size: 16px;
+  color: $defaultColor;
+}
+
+/******************** 用户登录、注册、修改密码公共样式start *********************/
+
+.user-layout {
+  max-width: 667px;
+  padding: $margin $margin * 2;
+  margin: 12vh auto 0;
+  position: relative;
+}
+
+.layout-tip {
+  text-align: center;
+  font-size: 3vh;
+  color: $mainColor;
+  padding: $margin * 3;
+}
+
+.user-name,
+.user-phone,
+.user-password,
+.user-commit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: $margin * 2;
+  height: 6vh;
+  border-radius: 5px;
+}
+
+.common-ipt {
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: $assistBg;
+  border: 1px solid $borderColor;
+  padding: $margin $margin * 2;
+  width: 100%;
+  font-size: 2vh;
+  background-color: $assistBg;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.user-layout .common-ipt::placeholder {
+  color: $inActiveColor;
+}
+
+.user-agree {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12px;
+}
+
+.common-ipt:focus {
+  border: 1px solid $mainColor;
+}
+
+.check-psd {
+  font-size: 18px;
+  color: $inActiveColor;
+  position: absolute;
+  top: 50%;
+  right: $margin * 1.5;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.user-commit {
+  width: 100%;
+  border: 1px solid $mainColor;
+  background-color: $mainColor;
+  margin-top: $margin * 3;
+  color: $activeColor;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $margin * 2;
+  color: $assistColor;
+  font-size: 12px;
+}
+
+.link>span {
+  cursor: pointer;
+}
+
+.copy {
+  text-align: center;
+  font-size: 16px;
+  margin-top: $margin * 2;
+}
+
+.copy .active {
+  color: $mainColor;
+}
+
+/********************* 用户登录、注册、修改密码公共样式end **********************/

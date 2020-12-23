@@ -1,0 +1,129 @@
+.search {
+  box-sizing: border-box;
+  padding-top: 100px;
+  background-color: $assistBg;
+  height: 100%;
+
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    padding: 8px 0 8px $margin;
+    background-color: $assistBg;
+    position: relative;
+    z-index: 1;
+    top: 50px !important;
+  }
+
+  .input-wrap {
+    padding-left: $margin;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    background-color: $mainBg;
+    flex-grow: 1;
+  }
+
+  .icon-search {
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+    margin-top: 0.5px;
+    float: left;
+    position: relative;
+    top: 6px;
+    color: $inActiveColor;
+  }
+
+  .search-input {
+    flex: 1;
+    border: none;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 4px 0;
+    width: calc(100% - 30px);
+  }
+
+  .search-btn {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 16px;
+    color: $mainColor;
+  }
+
+  .search-history {
+    background-color: $mainBg;
+  }
+
+  .history-item {
+    position: relative;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.border::after {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+  .history-item:last-of-type.border::after,
+  .movie:last-of-type .border::after {
+    height: 0;
+  }
+
+  .history-icon {
+    margin-right: $margin;
+    display: inline-block;
+    flex: 0 0 auto;
+    color: $inActiveColor;
+    opacity: .6;
+  }
+
+  .history-word {
+    font-size: 15px;
+    flex: 1;
+    height: 20px;
+  }
+
+  .del-word {
+    align-self: center;
+    padding: 17px $assistMargin;
+    flex: 0 0 auto;
+    color: $inActiveColor;
+    opacity: .6;
+  }
+
+  .tip {
+    color: $inActiveColor;
+    font-size: 15px;
+    padding: 9px 15px;
+    background-color: $mainBg;
+    position: relative;
+
+    &.border::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .result {
+    padding: 0;
+    font-size: 15px;
+    color: $mainColor;
+    line-height: 44px;
+    height: 44px;
+    text-align: center;
+    margin-bottom: $margin;
+
+  }
+
+  .wish {
+    color: $assistColor;
+    font-size: 16px;
+    flex-shrink: 0;
+    padding-left: 5px;
+  }
+}

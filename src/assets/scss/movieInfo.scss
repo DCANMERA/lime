@@ -1,0 +1,306 @@
+@import './adaptive.scss';
+
+.movie-detail {
+  height: 100%;
+  color: $activeColor;
+  position: relative;
+  font: 14px/1.5 Arial,
+    Helvetica,
+    sans-serif;
+  padding-top: 50px;
+
+  .movie-info {
+    padding: $assistMargin $assistMargin 0;
+
+    .movie-info-top {
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .movie-cover {
+      float: left;
+      height: 2.76rem;
+      width: 2rem;
+      position: relative;
+      flex-shrink: 0;
+
+      img.poster {
+        height: 2.76rem;
+        width: 100%;
+        border: 0;
+        display: inline-block;
+      }
+
+      img.poster-play {
+        height: .6rem;
+        width: .6rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    .movie-desc {
+      flex-grow: 1;
+      margin-left: .24rem;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      overflow: hidden;
+
+      .movie-desc-top {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        flex-grow: 1;
+      }
+
+      .movie-cn-name {
+        font-size: .4rem;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-weight: 700;
+
+        h1 {
+          font-size: .4rem;
+          margin: 0;
+        }
+      }
+
+      .movie-en-name {
+        font-size: .24rem;
+        opacity: .6;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .movie-type {
+        font-size: .24rem;
+        display: flex;
+        align-items: center;
+
+        .movie-cat {
+          opacity: .6;
+        }
+      }
+
+      .actors {
+        opacity: .6;
+        font-size: .24rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .movie-show-time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          opacity: .6;
+          font-size: .24rem;
+        }
+
+      }
+
+      .img {
+        display: inline-block;
+        font-size: .2rem;
+        margin-top: 1px;
+        color: $activeColor;
+        opacity: .6;
+      }
+
+
+      .btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: hsla(0, 0%, 100%, .35);
+          box-shadow: 0 0.02rem 0.08rem 0 rgba(0, 0, 0, .1);
+          border-radius: .08rem;
+          font-size: .28rem;
+          width: 47.61904762%;
+          height: .6rem;
+          color: #fff;
+          margin: 0;
+
+          .img {
+            font-size: .28rem;
+            margin-right: .12rem;
+          }
+
+          &.watched {
+            background-color: hsla(0, 0%, 100%, .2);
+            box-shadow: 0 0.02rem 0.08rem 0 rgba(0, 0, 0, .15);
+            opacity: .3;
+            font-size: .28rem;
+          }
+        }
+      }
+    }
+
+    .real-time-word-of-mouth {
+      background-color: rgba(0, 0, 0, .2);
+      box-shadow: 0 0 0.06rem 0 hsla(0, 0%, 100%, .03);
+      border-radius: .12rem;
+      margin-top: .3rem;
+      padding: .2rem .24rem;
+
+      &>.top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+          display: flex;
+          align-items: center;
+        }
+
+        img {
+          width: .28rem;
+          height: .28rem;
+          margin-right: .08rem;
+          display: inline-block;
+          margin-bottom: .03rem;
+        }
+      }
+
+      &>.left {
+        font-size: .24rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      &.theater-chain-not-graded .middle {
+        font-size: .44rem;
+        line-height: .8rem;
+      }
+
+      &>.middle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .4rem 0;
+
+        .people-want-to-watch {
+          font-size: .56rem;
+          color: #ffbb29;
+          margin-right: .08rem;
+        }
+      }
+    }
+
+    .brief-introduction {
+      position: relative;
+      padding: .32rem 0 0;
+
+      &::after {
+        content: "";
+        display: table;
+      }
+
+      &>.title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $activeColor;
+
+        span {
+          font-size: .3rem;
+        }
+
+        &>div {
+          opacity: .6;
+          color: $activeColor;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          span {
+            margin-right: .1rem;
+          }
+
+          span,
+          i {
+            font-size: .24rem;
+          }
+        }
+
+
+      }
+
+      &>.content {
+        font-size: .3rem;
+        line-height: .52rem;
+        overflow: hidden;
+
+        p {
+          margin: .14rem 0;
+          text-align: justify;
+        }
+
+        p.line-clamp {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          word-break: break-all;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .movie-list {
+      padding-top: $margin * 2;
+
+      .stage-photo {
+        color: $activeColor;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .buyMovie {
+      box-sizing: border-box;
+      width: 100%;
+      position: fixed;
+      left: 0;
+      bottom: $margin * 1.5;
+      padding: 0 $margin;
+
+      .buyMovie-btn {
+        background-color: $mainColor;
+        width: 100%;
+        height: .88rem;
+        box-shadow: 0 0.06rem 0.12rem 0 rgba(251, 51, 51, .3);
+        border-radius: .5rem;
+        font-size: .34rem;
+        color: $activeColor;
+        text-align: center;
+        line-height: .88rem;
+        letter-spacing: 2px;
+      }
+    }
+
+  }
+}
+
+
+video {
+  width: 100%;
+}
