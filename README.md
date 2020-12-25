@@ -7,7 +7,7 @@
 - 如果感觉还不错的话，请赏个 ★Star 鼓励一哈，后续会持续更新和优化；
   同时有需改进或完善的地方请我发邮箱 DCanmera@outlook.com
 
--[在线效果演示](https://dcanmera.github.io/lime/)
+[在线效果演示](https://dcanmera.github.io/lime/)
 
 ## 提示：如果出现网络问题或者是要验证身份等问题
 
