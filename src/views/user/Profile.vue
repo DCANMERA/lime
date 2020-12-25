@@ -25,12 +25,12 @@
     data() {
       return {
         profileData: [{
-            title: '安全中心',
-            name: 'Security'
-          },
-          {
             title: '我的电影票',
             name: 'Order'
+          },
+          {
+            title: '安全中心',
+            name: 'Security'
           }
         ]
       }
@@ -49,6 +49,24 @@
           name: 'Login'
         })
       }
+
+      this.axios({
+        method: 'GET',
+        url: this.$store.state.api.api.findAccountInfo,
+        params: {
+          appkey: this.$store.state.appkey,
+          tokenString,
+        },
+      }).then(res => {
+        if (res.data.code == 700) {
+          this.$toast('请先登录')
+          setTimeout(() => {
+            this.$goPage({
+              name: 'Login'
+            })
+          }, 1500)
+        }
+      })
     }
   }
 

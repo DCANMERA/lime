@@ -1,6 +1,6 @@
 <template>
   <div class="movie-detail"
-       :style="{backgroundColor: movieData.backgroundColor}">
+       :style="isShow ? `backgroundColor: ${movieData.backgroundColor}` : ''">
 
     <!-- 顶部导航栏 -->
     <NavBar @left-click="$goBack()"
@@ -9,7 +9,8 @@
 
     <!-- 电影详情信息 -->
     <div class="movie-info"
-         :style="{backgroundColor: movieData.backgroundColor}">
+         :style="isShow ? `backgroundColor: ${movieData.backgroundColor}` : ''"
+         v-if="isShow">
 
       <!-- 电影头部详情介绍 -->
       <div class="movie-info-top">
@@ -118,6 +119,12 @@
       </div>
     </div>
 
+    <div v-else
+         class="loading-mask">
+      <img :src="require('@/assets/img/logo.png')">
+      <span>加载中...</span>
+    </div>
+
     <!-- 图片与视频弹出 -->
     <Popup v-show="isShowPhoto"
            @close="closePupop">
@@ -146,6 +153,9 @@
 
     data() {
       return {
+
+        // 加载完成
+        isShow: false,
 
         // 电影ID
         movieId: '',
@@ -197,11 +207,17 @@
 
 
       // 获取电影数据
-      this.getMovieDetail()
+      this.getMovieDetail(this.movieId)
 
       // 获取看过的bool、想看的bool
       if (JSON.parse(localStorage.getItem('watch' + this.movieId))) {
         this.watchData = JSON.parse(localStorage.getItem('watch' + this.movieId))
+      }
+    },
+
+    watch: {
+      '$route.params.movieId'(movieId) {
+        this.getMovieDetail(movieId)
       }
     },
 
@@ -228,29 +244,33 @@
       }),
 
       // 获取电影详情
-      getMovieDetail() {
+      getMovieDetail(movieId) {
 
         // 加载中...
-        this.$toast('loading', 0)
+        this.isShow = false
+        // this.$toast('loading', 0)
         this.axios({
             url: this.api.detailmovie,
             params: {
-              movieId: this.movieId
+              movieId: movieId
             }
           })
           .then(res => {
-            this.$toast.clear()
-            this.movieData = res.data.detailMovie
-            this.movieData.cat = this.movieData.cat.replace(/\,/g, ' / ')
-            this.movieData.star = this.movieData.star.replace(/\,/g, ' / ')
-            this.movieData.img = this.$imgUrl(this.movieData.img)
-            this.movieData.photos.map(item => {
-              let obj = {}
-              obj.img = this.$imgUrl(item)
-              obj.nm = ''
-              obj.comingTitle = ''
-              this.photos.push(obj)
-            })
+            if (res.data.detailMovie) {
+              this.$toast.clear()
+              this.isShow = true
+              this.movieData = res.data.detailMovie
+              this.movieData.cat = this.movieData.cat.replace(/\,/g, ' / ')
+              this.movieData.star = this.movieData.star.replace(/\,/g, ' / ')
+              this.movieData.img = this.$imgUrl(this.movieData.img)
+              this.movieData.photos.map(item => {
+                let obj = {}
+                obj.img = this.$imgUrl(item)
+                obj.nm = ''
+                obj.comingTitle = ''
+                this.photos.push(obj)
+              })
+            }
           })
       },
 
@@ -297,8 +317,6 @@
           return
         }
 
-        // 加载中...
-        this.$toast('loading', 0)
         this.axios({
             method: "GET",
             url: this.api.findAccountInfo,
@@ -346,6 +364,16 @@
             }
           })
       }
+    },
+
+    beforeRouteEnter(to, from, next) {
+      document.querySelectorAll('.mask').forEach((item, index) => item.remove())
+      next()
+    },
+
+    beforeRouteLeave(to, from, next) {
+      document.querySelectorAll('.mask').forEach((item, index) => item.remove())
+      next()
     }
   }
 

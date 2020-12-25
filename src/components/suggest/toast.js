@@ -18,7 +18,7 @@ export function show(text, duration = 2000) {
     }
   });
 
-  document.body.appendChild(toastDom.$el)
+  document.body.insertBefore(toastDom.$el, document.getElementById('app'))
 
   if (duration == 0) {
     toastDom.showToast = true

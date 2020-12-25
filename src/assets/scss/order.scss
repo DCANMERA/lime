@@ -2,27 +2,6 @@
   background-color: $assistBg;
   height: 100%;
 
-  .order-mask {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 14px;
-    color: $inActiveColor;
-    z-index: 9;
-
-    img {
-      width: 100px;
-      margin-bottom: $margin;
-    }
-  }
-
   .order-content {
     padding-top: $margin * 5;
     background-color: $assistBg;

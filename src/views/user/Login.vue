@@ -2,8 +2,8 @@
   <div class="login">
 
     <!-- 顶部栏 -->
-    <NavBar textCenter="青柠影院"
-            @left-click="$goBack()">
+    <NavBar textCenter="青柠影院">
+      <div slot="left"></div>
     </NavBar>
 
     <!-- 登录界面 -->
@@ -48,6 +48,10 @@
     validateForm
   } from '@/assets/js/validateForm'
 
+  import {
+    mapState
+  } from 'vuex'
+
   export default {
     name: 'Login',
 
@@ -63,6 +67,19 @@
           password: ''
         }
       };
+    },
+
+    created() {
+      this.$toast.clear()
+    },
+
+    computed: {
+      ...mapState({
+        appkey: state => state.appkey
+      }),
+      ...mapState('api', {
+        api: state => state.api
+      })
     },
 
     methods: {
@@ -95,7 +112,7 @@
         let userInfo = Object.assign({}, this.loginData)
 
         // 拷贝用户的appkey,appkey是用与验证用户和服务端的唯一标识
-        userInfo.appkey = this.$store.state.appkey
+        userInfo.appkey = this.appkey
 
         // 加载中...
         this.$toast('loading', 0)
@@ -103,12 +120,12 @@
         // 请求登录接口
         this.axios({
             method: 'POST',
-            url: 'http://47.106.197.108:10002/login',
+            url: this.api.login,
             data: userInfo
           })
           .then(res => {
-            this.$toast.clear();
-            this.$toast(res.data.msg);
+            this.$toast.clear()
+            this.$toast(res.data.msg)
             if (res.data.code == 200) {
               this.$store.commit('userModule/set__tk', res.data.token)
               localStorage.setItem('__tk', res.data.token)

@@ -1,16 +1,17 @@
-const BASE_URL = 'http://47.106.197.108:10002'
+const BASE_URL = 'http://api.kele8.cn/agent/http://47.106.197.108:10002'
+const PATH_UPL = 'http://api.kele8.cn/agent/http://m.maoyan.com'
 
 const state = {
   api: {
-    search: '/ajax/search',
-    movieOnInfoList: '/ajax/movieOnInfoList',
-    comingList: '/ajax/comingList',
-    mostExpecteds: '/ajax/mostExpected?limit=12&offset=12',
-    mostExpected: '/ajax/mostExpected',
-    moreComingList: '/ajax/moreComingList?movieIds=1258140%2C1302281%2C1334709%2C1370629%2C1218142%2C1330790%2C1321157%2C1211009%2C1229845%2C553231',
-    cinemaList: '/ajax/cinemaList',
-    detailmovie: '/ajax/detailmovie',
-    filterCinemas: '/ajax/filterCinemas',
+    search: PATH_UPL + '/ajax/search',
+    movieOnInfoList: PATH_UPL + '/ajax/movieOnInfoList',
+    comingList: PATH_UPL + '/ajax/comingList',
+    mostExpecteds: PATH_UPL + '/ajax/mostExpected?limit=12&offset=12',
+    mostExpected: PATH_UPL + '/ajax/mostExpected',
+    moreComingList: PATH_UPL + '/ajax/moreComingList?movieIds=1258140%2C1302281%2C1334709%2C1370629%2C1218142%2C1330790%2C1321157%2C1211009%2C1229845%2C553231',
+    cinemaList: PATH_UPL + '/ajax/cinemaList',
+    detailmovie: PATH_UPL + '/ajax/detailmovie',
+    filterCinemas: PATH_UPL + '/ajax/filterCinemas',
 
     login: BASE_URL + '/login',
     register: BASE_URL + '/register',

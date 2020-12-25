@@ -67,6 +67,12 @@
         查看全部{{cinemas.total}}家电影院
       </div>
     </div>
+
+    <div v-show="movies.list.length ==0 && cinemas.list.length == 0 && !isShowHistory"
+         class="loading-mask">
+      <img :src="require('@/assets/img/logo.png')">
+      <span>无相关电影或影院</span>
+    </div>
   </div>
 </template>
 

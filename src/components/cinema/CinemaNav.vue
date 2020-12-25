@@ -63,7 +63,7 @@
     created() {
 
       // 调用影院商圈数据
-      this.filterCinemas();
+      this.filterCinemas(this.location);
     },
 
     computed: {
@@ -88,6 +88,12 @@
       }),
     },
 
+    watch: {
+      '$store.state.homeModule.location'(payload) {
+        this.filterCinemas(payload[0].cityId)
+      }
+    },
+
     methods: {
 
       // 设置弹窗
@@ -109,6 +115,7 @@
           return
         }
         this[maskNameList[type]] = false
+        document.body.className = ''
 
       },
 
@@ -121,12 +128,12 @@
       },
 
       // 获取影院商圈
-      filterCinemas() {
-        if (this.location == 0) return
+      filterCinemas(ci) {
+        if (ci == 0) return
         this.axios({
             url: this.api.filterCinemas,
             params: {
-              ci: this.location,
+              ci,
               optimus_uuid: this.optimus_uuid,
               optimus_risk_level: this.optimus_risk_level,
               optimus_code: this.optimus_code

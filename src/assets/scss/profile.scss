@@ -40,16 +40,16 @@
      display: flex;
      position: relative;
      background-color: $mainBg;
-     background-image:
-       url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/store.png');
      background-repeat: no-repeat;
      background-position: top;
      background-size: 42px auto;
+     background-image:
+       url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/movie.png');
 
      &:last-of-type {
-       margin-right: 0;
        background-image:
-         url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/movie.png');
+         url('https://s0.meituan.net/bs/file/?f=myfe/canary:static/deploy/dpmmweb/client/dpmmweb/component/mycenter/img/store.png');
+       margin-right: 0;
      }
    }
 

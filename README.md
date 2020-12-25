@@ -7,9 +7,13 @@
 - 如果感觉还不错的话，请赏个 ★Star 鼓励一哈，后续会持续更新和优化；
   同时有需改进或完善的地方请我发邮箱 DCanmera@outlook.com
 
--[在线效果演示](https://dcanmera.github.io/lime/)
+<a href="https://dcanmera.github.io/lime/" target="_blank">在线效果演示</a>
 
-## 提示：如果出现网络问题或者是要验证身份等问题
+### 如遇 Vue 项目显示一直加载或浏览器控制台出现: Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR(SSL 协议错误)
+
+- 请设置浏览器-->隐私设置和安全性-->不安全内容-->允许 即可或<a href="https://www.cnblogs.com/wqkeep/p/13748676.html" target="_blank">参考这篇文档</a>
+
+### 提示：如果出现网络问题或者是要验证身份等问题
 
 - 原因：美团接口访问限制
 

@@ -10,7 +10,7 @@
     padding: 8px 0 8px $margin;
     background-color: $assistBg;
     position: relative;
-    z-index: 1;
+    z-index: 10;
     top: 50px !important;
   }
 
@@ -52,6 +52,8 @@
 
   .search-history {
     background-color: $mainBg;
+    position: relative;
+    z-index: 10;
   }
 
   .history-item {

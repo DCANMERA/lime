@@ -12,44 +12,28 @@ export const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/user/Login.vue'),
-    meta: {
-      pageTitle: '登录',
-      keepAlive: true
-    }
+    component: () => import('@/views/user/Login.vue')
   },
 
   // 注册
   {
     path: '/register',
     name: 'Register',
-    component: () => import('@/views/user/Register.vue'),
-    meta: {
-      pageTitle: '注册',
-      keepAlive: true
-    }
+    component: () => import('@/views/user/Register.vue')
   },
 
   // 忘记密码
   {
     path: '/forgot',
     name: 'Forgot',
-    component: () => import('@/views/user/Forgot.vue'),
-    meta: {
-      pageTitle: '忘记密码',
-      keepAlive: true
-    }
+    component: () => import('@/views/user/Forgot.vue')
   },
 
   // 安全中心
   {
     path: '/security',
     name: 'Security',
-    component: () => import('@/views/user/Security.vue'),
-    meta: {
-      pageTitle: '安全中心',
-      keepAlive: true
-    }
+    component: () => import('@/views/user/Security.vue')
   },
 
   // 首页
@@ -58,7 +42,6 @@ export const routes = [
     name: 'Main',
     component: () => import('@/views/Main.vue'),
     meta: {
-      pageTitle: '首页',
       keepAlive: true
     },
     children: [
@@ -69,9 +52,8 @@ export const routes = [
         name: 'Home',
         component: () => import('@/views/home/Home.vue'),
         meta: {
-          pageTitle: '首页',
           keepAlive: true
-        },
+        }
       },
 
       // 影院
@@ -80,9 +62,8 @@ export const routes = [
         name: 'Cinema',
         component: () => import('@/views/cinema/Cinema.vue'),
         meta: {
-          pageTitle: '影院',
-          keepAlive: false
-        },
+          keepAlive: true
+        }
       },
 
       // 我的
@@ -91,10 +72,9 @@ export const routes = [
         name: 'Profile',
         component: () => import('@/views/user/Profile.vue'),
         meta: {
-          pageTitle: '我的',
           keepAlive: false
-        },
-      },
+        }
+      }
     ]
   },
 
@@ -118,8 +98,7 @@ export const routes = [
     name: 'MovieInfo',
     component: () => import('@/views/detail/MovieInfo.vue'),
     meta: {
-      pageTitle: '详情',
-      keepAlive: false
+      keepAlive: true
     }
   },
 
@@ -136,7 +115,6 @@ export const routes = [
     name: 'Pay',
     component: () => import('@/views/order/Pay.vue'),
     meta: {
-      pageTitle: '详情',
       keepAlive: false
     }
   }

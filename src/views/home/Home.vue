@@ -78,7 +78,6 @@
     },
 
     created() {
-      this.$toast.clear()
       this.navData.push({
         name: '热映',
         api: this.api.movieOnInfoList,
@@ -93,7 +92,7 @@
       })
 
       // 获取电影数据
-      this.getMoive();
+      this.getMoive()
     },
 
     computed: {
@@ -120,59 +119,29 @@
 
       // 切换导航栏
       toggleNavTab(index) {
-        if (this.navActive == index) return;
-        this.setNavActive(index);
-        this.getMoive();
+        if (this.navActive == index) return
+        this.setNavActive(index)
+        this.getMoive()
       },
 
       // 获取电影数据
       getMoive() {
 
-        // 加载中...
-        this.$toast('loading', 0)
-
-        // 请求最受好评与受欢迎电影数据
-        if (this.navData[this.navActive].hotApi) {
-          if (
-            JSON.parse(sessionStorage.getItem('hotMovieone')) &&
-            JSON.parse(sessionStorage.getItem('hotMovietwo'))
-          ) {
-            let target = this.navActive ? 'two' : 'one'
-            this.hotMovie = JSON.parse(
-              sessionStorage.getItem(`hotMovie${target}`)
-            )
-          } else {
-            this.axios({
-                url: this.navData[this.navActive].hotApi,
-                params: {
-                  token: this.token,
-                  optimus_uuid: this.optimus_uuid,
-                  optimus_risk_level: this.optimus_risk_level,
-                  optimus_code: this.optimus_code,
-                  limit: this.limit
-                }
-              })
-              .then(res => {
-                if (this.$judgeNetwork(res)) return
-                let target = this.navActive ? 'two' : 'one'
-                sessionStorage.setItem(
-                  `hotMovie${target}`,
-                  JSON.stringify(res.data)
-                )
-                this.hotMovie = res.data
-              })
-          }
-        }
-
-        // 请求电影数据
+        // 如果session有电影数据，则终止请求
         if (
           sessionStorage.getItem('movieList') != 'undefined' &&
           sessionStorage.getItem('movieComing') != 'undefined' &&
           sessionStorage.getItem('movieDefault') != 'undefined' &&
+          sessionStorage.getItem('hotMovieone') != 'undefined' &&
+          sessionStorage.getItem('hotMovietwo') != 'undefined' &&
           sessionStorage.getItem('movieList') &&
           sessionStorage.getItem('movieComing') &&
-          sessionStorage.getItem('movieDefault')
+          sessionStorage.getItem('movieDefault') &&
+          sessionStorage.getItem('hotMovieone') &&
+          sessionStorage.getItem('hotMovietwo')
         ) {
+          let target = this.navActive ? 'two' : 'one'
+          this.hotMovie = JSON.parse(sessionStorage.getItem(`hotMovie${target}`))
           switch (true) {
             case this.navActive == 0:
               this.movieData = JSON.parse(
@@ -189,12 +158,26 @@
                 sessionStorage.getItem('movieDefault')
               )
           }
-          if (this.movieData.length > 0) {
-            this.$toast.clear()
-            this.succeedBool = true
-          }
-        } else {
-          this.axios({
+          this.$toast.clear()
+          this.succeedBool = true
+          return
+        }
+
+        // 加载中...
+        this.$toast('loading', 0)
+        if (this.navActive < 2) {
+          Promise.all([
+            this.axios({
+              url: this.navData[this.navActive].hotApi,
+              params: {
+                token: this.token,
+                optimus_uuid: this.optimus_uuid,
+                optimus_risk_level: this.optimus_risk_level,
+                optimus_code: this.optimus_code,
+                limit: this.limit
+              }
+            }),
+            this.axios({
               url: this.navData[this.navActive].api,
               params: {
                 token: this.token,
@@ -203,39 +186,75 @@
                 optimus_code: this.optimus_code
               }
             })
-            .then(res => {
-              if (this.$judgeNetwork(res)) return
-              if (Object.prototype.toString.call(res.data) == '[object Object]') {
-                this.movieData = {}
-                switch (true) {
-                  case this.navActive == 0:
-                    this.movieData = res.data.movieList
-                    sessionStorage.setItem(
-                      'movieList',
-                      JSON.stringify(res.data.movieList)
-                    )
-                    break
-                  case this.navActive == 1:
-                    this.movieData = res.data.coming
-                    sessionStorage.setItem(
-                      'movieComing',
-                      JSON.stringify(res.data.coming)
-                    )
-                    break
-                  default:
-                    this.movieData = res.data.coming
-                    sessionStorage.setItem(
-                      'movieDefault',
-                      JSON.stringify(res.data.coming)
-                    )
-                }
-                if (this.movieData.length > 0) {
-                  this.$toast.clear()
-                  this.succeedBool = true
-                }
+          ]).then(res => {
+
+            // 406判断
+            if (this.$judgeNetwork(res[0])) return
+
+            // 判断电影数据是否存在
+            if (
+              Object.prototype.toString.call(res[1].data) == '[object Object]'
+            ) {
+
+              // 请求最受好评与受欢迎电影数据
+              let target = this.navActive ? 'two' : 'one'
+              sessionStorage.setItem(`hotMovie${target}`, JSON.stringify(res[0].data))
+              this.hotMovie = res[0].data
+
+              // 获取电影列表数据
+              this.movieData = {}
+              switch (true) {
+                case this.navActive == 0:
+                  this.movieData = res[1].data.movieList
+                  sessionStorage.setItem(
+                    'movieList',
+                    JSON.stringify(res[1].data.movieList)
+                  )
+                  break
+                case this.navActive == 1:
+                  this.movieData = res[1].data.coming
+                  sessionStorage.setItem(
+                    'movieComing',
+                    JSON.stringify(res[1].data.coming)
+                  )
+                  break
               }
-            })
+
+              // 电影数据不为空才渲染
+              if (this.movieData.length > 0) {
+                this.$toast.clear()
+                this.succeedBool = true
+              }
+            }
+          })
+
+          return
         }
+
+        // 经典电影获取
+        this.axios({
+            url: this.navData[this.navActive].api,
+            params: {
+              token: this.token,
+              optimus_uuid: this.optimus_uuid,
+              optimus_risk_level: this.optimus_risk_level,
+              optimus_code: this.optimus_code
+            }
+          })
+          .then(res => {
+            if (this.$judgeNetwork(res)) return
+            if (
+              Object.prototype.toString.call(res.data) == '[object Object]'
+            ) {
+              this.movieData = {}
+              this.movieData = res.data.coming
+              sessionStorage.setItem('movieDefault', JSON.stringify(res.data.coming))
+              if (this.movieData.length > 0) {
+                this.$toast.clear()
+                this.succeedBool = true
+              }
+            }
+          })
       },
 
       // 跳往电影详情页
@@ -247,7 +266,17 @@
           }
         })
       }
-    }
+    },
+
+    beforeRouteEnter(to, from, next) {
+      document.querySelectorAll('.mask').forEach((item, index) => item.remove())
+      next()
+    },
+
+    beforeRouteLeave(to, from, next) {
+      document.querySelectorAll('.mask').forEach((item, index) => item.remove())
+      next()
+    },
   }
 
 </script>

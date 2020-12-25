@@ -7,8 +7,8 @@
             @left-click="$goBack()">
     </NavBar>
 
-    <div v-if="orderData.length==0"
-         class="order-mask">
+    <div v-if="orderData.length == 0"
+         class="loading-mask">
       <img :src="require('@/assets/img/logo.png')">
       <span>没有相关订单</span>
     </div>

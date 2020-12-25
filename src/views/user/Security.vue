@@ -39,15 +39,17 @@
 
   export default {
     name: 'Security',
+
     data() {
       return {
         isShowPopup: false,
         active: 0
       }
     },
+
     computed: {
       ...mapState({
-        appkey: state => appkey
+        appkey: state => state.appkey
       }),
       ...mapState('api', {
         api: state => state.api
@@ -56,6 +58,7 @@
         __tk: state => state.__tk
       }),
     },
+
     methods: {
       ...mapMutations('cinemaModule', {
         setPlan: 'setPlan'

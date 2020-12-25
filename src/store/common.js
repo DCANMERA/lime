@@ -1,4 +1,4 @@
-import *as toast from '../components/suggest/toast';
+import *as toast from '../components/suggest/toast'
 
 export default {
 

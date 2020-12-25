@@ -79,6 +79,9 @@
     },
 
     watch: {
+      '$store.state.homeModule.location'(location) {
+        this.getCinemaList()
+      },
       '$store.state.cinemaModule.districtId'(id) {
         this.districtId = id
       },
@@ -186,6 +189,11 @@
       selectCinema(item) {
         this.$selectCinema(item)
       }
+    },
+
+    beforeRouteLeave(to, from, next) {
+      document.body.className = ''
+      next()
     }
   }
 

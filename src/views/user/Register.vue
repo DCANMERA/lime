@@ -68,6 +68,10 @@
     validateForm
   } from '@/assets/js/validateForm'
 
+  import {
+    mapState
+  } from 'vuex'
+
   export default {
     name: 'Register',
 
@@ -88,7 +92,16 @@
           affirmPassword: '',
           isAgree: false
         }
-      };
+      }
+    },
+
+    computed: {
+      ...mapState({
+        appkey: state => state.appkey
+      }),
+      ...mapState('api', {
+        api: state => state.api
+      })
     },
 
     methods: {
@@ -133,14 +146,14 @@
         }
 
         let userInfo = Object.assign({}, this.registerData)
-        userInfo.appkey = this.$store.state.appkey
+        userInfo.appkey = this.appkey
 
         // 加载中...
         this.$toast('loading', 0)
 
         this.axios({
             method: 'POST',
-            url: 'http://47.106.197.108:10002/register',
+            url: this.api.register,
             data: userInfo
           })
           .then(res => {

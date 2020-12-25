@@ -170,6 +170,9 @@
     },
 
     created() {
+      setTimeout(() => {
+        this.$toast.clear()
+      }, 2000)
       this.cinemaName = this.cinema.nm ?
         this.cinema.nm :
         JSON.parse(sessionStorage.getItem('cinema')).nm
@@ -271,7 +274,12 @@
           name: 'Order'
         })
       }
-    }
+    },
+
+    beforeRouteEnter(to, from, next) {
+      document.querySelectorAll('.mask').forEach((item, index) => item.remove())
+      next()
+    },
   }
 
 </script>

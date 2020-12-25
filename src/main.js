@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Router from 'vue-router'
+
 
 // 导入公共组件
 import Popup from './components/suggest/Popup.vue'
@@ -104,19 +106,15 @@ Vue.filter('getThousands', (num, step = '.', link = '.') => {
 
 Vue.use(VueAxios, axios)
 
-Vue.config.productionTip = false
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 
+Vue.config.productionTip = false
 
 // axios拦截器，在发起请求之前执行
 axios.interceptors.request.use(config => {
-  if (config.method == 'get') {
-    if (
-      config.url.startsWith('/ajax') &&
-      process.env.NODE_ENV == 'production'
-    ) {
-      config.url = 'http://api.kele8.cn/agent/http://m.maoyan.com' + config.url
-    }
-  }
 
   // 处理post请求参数, 进行参数序列化
   if (config.method == 'post') {

@@ -9,9 +9,8 @@
 
     <!-- 页面可视区 -->
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
+      <router-view></router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
 
     <!-- 底部导航栏 -->
     <tab-bar>
