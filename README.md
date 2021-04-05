@@ -5,7 +5,7 @@
 - 基于 Vue Cli4.5.0 脚手架搭建，通过 Vue 全家桶构建、指令的灵活运用、组件封装、组件之间通信，使各组件库可实现自由替换和组合。
 - 建议使用谷歌浏览器查看或开发，iPhone 6/7/8 屏幕尺寸为 375px 宽和 667px 高是最佳效果。
 - 如果感觉还不错的话，请赏个 ★Star 鼓励一哈，后续会持续更新和优化；
-  同时有需改进或完善的地方请我发邮箱 DCanmera@outlook.com
+  同时有需改进或完善的地方请我发邮箱 hongwei.ye@outlook.com
 
 <a href="https://dcanmera.github.io/lime/" target="_blank">在线效果演示</a>
 
